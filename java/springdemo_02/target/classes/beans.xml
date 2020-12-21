@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+       <!--配置bean-->
+    <bean id="accountDao" class="cn.edu.sziit.dao.AccountDao"/>
+    <bean id="accountService" class="cn.edu.sziit.service.AccountService">
+        <property name="accountDao" ref="accountDao"/>
+    </bean>
+      <!--配置切面bean-->
+    <bean id="myAspect" class="cn.edu.sziit.aop.xml.MyAspect"/>
+      <!--配置aop-->
+    <aop:config>
+        <!--配置共享的切入点pointcut,使用表达式指定切入点-->
+        <aop:pointcut id="pt1" expression="execution(* cn.edu.sziit.service.*.*(..))"/>
+        <!--配置切面,在其中指定通知和切入点的关系-->
+        <aop:aspect ref="myAspect" id="myAspectId">
+            <!--配置通知与切入点的关系-->
+            <aop:before method="manageAuthority" pointcut-ref="pt1"/>
+            <aop:after method="releaseResource" pointcut-ref="pt1"/>
+            <aop:around method="processTransaction" pointcut-ref="pt1"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!--指定需要扫描的包，使注解生效-->
+    <context:component-scan base-package="cn.edu.sziit.aop.annotation"/>
+    <!--启动基于注解的声明式AspectJ支持-->
+    <aop:aspectj-autoproxy/>
+
+    <context:component-scan base-package="cn.edu.sziit.model"/>
+    <context:property-placeholder location="classpath*:account.properties"/>
+</beans>

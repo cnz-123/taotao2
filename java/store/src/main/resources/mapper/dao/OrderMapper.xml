@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.sziit.store.dao.OrderMapper">
+
+    <select id="selectAllOrder" parameterType="java.util.List"  resultType="cn.edu.sziit.store.model.Order">
+        select * from orders
+    </select>
+
+    <select id="selectOrderByName" resultType="cn.edu.sziit.store.model.Order">
+        select * from orders where username = #{username}
+    </select>
+
+    <insert id="insertOrder" parameterType="cn.edu.sziit.store.model.Order">
+        insert into orders (phoneNum,username,goodsName,address,price,category) values (#{phoneNum},#{username},#{goodsName},#{address},#{price},#{category});
+    </insert>
+
+    <delete id="deleteOrderByName" parameterType="int">
+        delete from orders where username = #{username}
+    </delete>
+
+</mapper>

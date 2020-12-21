@@ -1,0 +1,22 @@
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  
+  <servlet>
+    <servlet-name>HelloWorldServlet</servlet-name>
+    <servlet-class>servlet.HelloWorldServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HelloWorldServlet</servlet-name>
+    <url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>pinyinServlet</servlet-name>
+    <servlet-class>servlet.pinyinServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>pinyinServlet</servlet-name>
+    <url-pattern>/pinyinServlet</url-pattern>
+  </servlet-mapping>
+</web-app>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.sziit.dao.AccountMapper">
+    <!--根据主键查询-->
+    <select id="selectAccountById" resultType="cn.edu.sziit.model.Account">
+    select * from account where id = #{id}
+  </select>
+    <select id="selectAccountByName" resultType="cn.edu.sziit.model.Account">
+        select *from account where name like '%${name}%'
+    </select>
+</mapper>

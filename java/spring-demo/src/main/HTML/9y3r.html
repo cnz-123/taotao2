@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            float: left;
+        }
+    </style>
+    <script>
+        window.onload = function (){
+            var now = new Date();
+            var timedate = new Date("2021,01,02");
+            var date = timedate.getTime()-now.getTime();
+            var time = Math.ceil(date/(24*60*60*1000));
+
+            document.getElementById('date').innerHTML = time;
+        }
+    </script>
+</head>
+<body>
+<div>距离元旦还有</div>
+<div id="date"></div>
+<div>天</div>
+</body>
+</html>

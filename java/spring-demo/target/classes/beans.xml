@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--用构造方法实例化对象 -->
+    <bean id="account2" class="cn.edu.sziit.model.Account">
+        <property name="id" value="007"/>
+        <property name="name" value="James Bond"/>
+        <property name="balance" value="50000"/>
+    </bean>
+    <!--构造方法参数注入依赖 -->
+    <bean id="account1" class="cn.edu.sziit.model.Account">
+        <constructor-arg index="0" value="001"/>
+        <constructor-arg name="name" value="Jackie chan"/>
+        <constructor-arg type="double" value="50000"/>
+    </bean>
+
+    <!--用工厂的静态方法实例化对象 -->
+    <bean id="account" class="cn.edu.sziit.factory.AccountFactory"
+    factory-method="getAccount"/>
+
+</beans>
